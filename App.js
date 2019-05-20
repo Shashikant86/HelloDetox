@@ -21,11 +21,11 @@ export default class example extends Component {
         <Text style={{fontSize: 25, marginBottom: 30}}>
           Welcome
         </Text>
-        <TouchableOpacity testID='hello_button' onPress={this.onButtonPress.bind(this, 'Hello')}>
-          <Text style={{color: 'blue', marginBottom: 20}}>Say Hello</Text>
+        <TouchableOpacity testID='hello_react' onPress={this.onButtonPress.bind(this, 'React')}>
+          <Text style={{color: 'blue', marginBottom: 20}}>Say React</Text>
         </TouchableOpacity>
-        <TouchableOpacity testID='world_button' onPress={this.onButtonPress.bind(this, 'World')}>
-          <Text style={{color: 'blue', marginBottom: 20}}>Say World</Text>
+        <TouchableOpacity testID='detox_button' onPress={this.onButtonPress.bind(this, 'Detox')}>
+          <Text style={{color: 'blue', marginBottom: 20}}>Say Detox</Text>
         </TouchableOpacity>
       </View>
     );
