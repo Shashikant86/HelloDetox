@@ -1,64 +1,47 @@
 import React, { Component } from 'react';
-import { Alert, AppRegistry, Platform, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity
+} from 'react-native';
 
-export default class Touchables extends Component {
-  _onPressButton() {
-    Alert.alert('You tapped the button!')
+export default class example extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      greeting: undefined
+    };
   }
-
-  _onLongPressButton() {
-    Alert.alert('You long-pressed the button!')
-  }
-
-
   render() {
+    if (this.state.greeting) return this.renderAfterButton();
     return (
-      <View style={styles.container}>
-        <TouchableHighlight onPress={this._onPressButton} underlayColor="black">
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Touch Me</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableOpacity onPress={this._onPressButton}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Touch React Native</Text>
-          </View>
+      <View testID='welcome' style={{flex: 1, paddingTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 25, marginBottom: 30}}>
+          Welcome
+        </Text>
+        <TouchableOpacity testID='hello_button' onPress={this.onButtonPress.bind(this, 'Hello')}>
+          <Text style={{color: 'blue', marginBottom: 20}}>Say Hello</Text>
         </TouchableOpacity>
-        
-        <TouchableWithoutFeedback
-            onPress={this._onPressButton}
-            >
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Touch Detox</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton} underlayColor="white">
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Touch Detox Long Press</Text>
-          </View>
-        </TouchableHighlight>
+        <TouchableOpacity testID='world_button' onPress={this.onButtonPress.bind(this, 'World')}>
+          <Text style={{color: 'blue', marginBottom: 20}}>Say World</Text>
+        </TouchableOpacity>
       </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 60,
-    alignItems: 'center'
-  },
-  button: {
-    marginBottom: 30,
-    width: 260,
-    alignItems: 'center',
-    backgroundColor: '#2196F3'
-  },
-  buttonText: {
-    padding: 20,
-    color: 'white'
+  renderAfterButton() {
+    return (
+      <View style={{flex: 1, paddingTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 25}}>
+          {this.state.greeting}!!!
+        </Text>
+      </View>
+    );
   }
-});
-
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('HelloDetox', () => ButtonBasics);
+  onButtonPress(greeting) {
+    this.setState({
+      greeting: greeting
+    });
+  }
+}
